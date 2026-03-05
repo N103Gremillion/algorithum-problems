@@ -1,0 +1,22 @@
+# LaTeX intermediate files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.bbl
+*.blg
+
+# MiKTeX cache or temporary files
+*.nav
+*.snm
+*.vrb
+
+# OS-specific files
+.DS_Store
+Thumbs.db

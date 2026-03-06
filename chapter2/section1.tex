@@ -1,0 +1,55 @@
+2.1-4 \\
+Consider the searching problem: \\
+\textbf{Input}: A sequence of \textit{n} numbers $<a_1, a_2, ..., a_n>$ stored in array A[1:n] and a value x. \\
+\textbf{Output}: An index \textit{i} that \textit{x} equals A[i] or the special value \textit{NIL} if \textit{x} doesn't appear in A. \\
+
+Write pseudocode for linear search, which scans through the array from begin-ning to end, looking for 
+x. Using a loop invariant, prove that your algorithm is 
+correct. Make sure that your loop invariant fulûlls the three necessary properties.
+
+\begin{verbatim}
+# give the index of the x target or else -1 if not found
+def find_val(x: int, array: list[int]) -> int:
+    n: int = len(array)
+    res: int = -1 
+
+    for i in range(n):
+        if (array[i] == x):
+            res = i
+            break
+            
+    return res
+            
+array: list[int] = [1,2,3,4,5,6,7]
+index: int = find_val(100, array)
+
+print(f"Index: {index}")
+\end{verbatim}
+
+Note: Loop invariant properites include:
+\begin{itemize}
+    \item \textbf{Initialization}: The invariant is true prior to the first iteration of the loop.
+    
+    \item \textbf{Maintenance}: If the invariant is true before an iteration of the loop, it remains true before the next iteration.
+    
+    \item \textbf{Termination}: The loop eventually terminates. When it does, the invariant—together with the reason the loop terminated—gives a useful property that helps prove the algorithm is correct.
+\end{itemize}
+
+\begin{proof}
+\textbf{
+    Initialization:} Before the first iteration, the loop variable $i$ is set to $0$.
+At this point, the subarray $A[0:i]$ contains no elements. Therefore, no index $j < i$
+exists such that $A[j] = x$. The loop invariant holds because we have not yet examined
+any elements, so it is correct that $x$ has not been found in the subarray. Thus we return
+Nil (-1) which is a valid solution in this scenerio. 
+
+\textbf{Maintenance}: 
+
+\end{proof}
+
+2.1-5 \\
+Consider the problem of adding two n-bit binary integers a and b, stored in two n-element arrays
+A[0:n-1] and B[0:n-1], where each element is either 0 or 1, a = $\sum_{i= 0}^{n-1}$A[i]*$2^i$, and b = $\sum_{i=0}^{n-1}B[i]*2^i$.
+The sum c = a + b of the two integers should be stored in binary from in an (n + 1)-element array C[0:n], where c = $\sum_{i=0}^{n}C[i]*2^i$.
+Write a procedure ADD-BINARY-INTEGERS that takes as input arrays A and B, along with the length n, and returns array C holding the sum.
+

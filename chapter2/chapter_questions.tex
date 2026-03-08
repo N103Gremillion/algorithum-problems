@@ -1,0 +1,92 @@
+2-1 Insertion sort on small arrays in merge sort\\
+Although merge sort runs in $\theta(nlgn)$ worst-case time and insertion sort runs 
+in $\theta(n^2)$ worst-case , the constant factors in insertion sort can make it faster 
+in practice for small problem sizes on many machines. Thus it makes sense to 
+coarsen the leaves of the recursion by using insertion sort within merge sort when 
+subproblems become sufûciently small. Consider a modiûcation to merge sort in 
+which n/k sublists of length k are sorted using insertions sort and then merged using
+the standard merging mechanism, where k is a vlue to be determined. \\
+
+a. Show that insertion sort can sort the n/k sublists, each of length k, in $\theta(nk)$
+worst-case time. \\
+
+b. Show how to merge the sublists in $\theta(nlg(n/k))$ worst-case time. \\
+
+c. Given that the modified algorithm runs in $\theta(nk + nlg(n/k))$ worst-case time, 
+what is the largest value of k as a function of n for which the modified algorithm
+has the same running time as standard merge sort, in terms of $\theta-notation$? \\
+
+d. How should you choose k in practice? \\
+
+2-2 Correctness of bubblesort \\
+Bubblesort is a popular, but inefûcient, sorting algorithm. It works by repeatedly 
+swapping adjacent elements that are out of order. The procedure BUBBLESORT 
+sorts array A[i:n].
+\begin{verbatim}
+def bubblesort(array: list[int], n: int):
+    for i in range(n):
+        for j in range(n, i, -1):
+            if (array[j] < array[j - 1]):
+                temp: int = array[j]
+                array[j] = array[j-1]
+                array[j-1] = temp
+\end{verbatim} 
+
+a. Let $A'$ denote the array A after bubblesort(A,n) is executed. To prove that bubblesort is correct, you need to prove that it terminates and that 
+$A'[1] \leq A'[2] \leq .... \leq A'[n]$. (2.5) \\
+In order to show that bubblesort actually sorts, what else do you need to prove? \\
+
+b. State precisely a loop invariant for the for loop in lines 2-4, and prove that this 
+loop invariant holds. Your proof should use the structure of the loop-invariant 
+proof presented in this chapter. \\
+
+c. Using the termination condition of the loop invariant proved in part (b), state 
+a loop invariant for the for loop in lines 1-4 that allows you to prove inequal- 
+ity (2.5). Your proof should use the structure of the loop-invariant proof pre- 
+sented in this chapter. \\
+
+d. What is the worst-case running time of BUBBLESORT? How does it compare 
+with the running time of INSERTION-SORT? \\
+
+2-3 Correctness of Horner’s rule  \\
+You are given the coefficents $a_0, a_1, a_2,...,a_n$ of a polynomial \\
+P(x) = $\sum_{k=0}^{n}a_kx^k$ = $a_0 + a_1x + a_2x^2 + ... + a_{n-1}x^{n-1} + a_nx^n$, \\
+and you want to evaluate this polynomial for a given value of x. Horner’s rule 
+says to evaluate the polynomial according to this parenthesization: \\
+$P(x) = a_0 + x(a_1 + x(a_2 + ... + x(a_{n-1} + xa_n)...))$ \\
+The procedure HORNER implements Horner’s rule to evaluate 
+P(x), given the coefficents $a_0,a_1,a_2,...,a_n$ in an array A[0:n] and the value of x. 
+\begin{verbatim}
+def horner(array, n, x):
+    p = 0
+    for i in range(n-1, -1, -1):
+        p = a[i] + x*p
+    return p
+\end{verbatim}
+a. In terms of $\theta-notation$, what is the run time of this procedure? \\
+
+b. Write code to implement the naive polynomial-evaluation algorithm that 
+computes each term of the polynomial from scratch. What is the running time 
+of this algorithm? How does it compare with HORNER? \\
+
+c. Consider the following loop invariant for the procedure horner:
+    At the start of each iteration of the for loopof line 2-3,
+    $p = \sum_{k=0}^{n-(i+1)}A[k+i+1]*x^k$. \\
+Interpret a summation with no terms as equaling 0. Following the structure 
+of the loop-invariant proof presented in this chapter, use this loop invariant to 
+show that, at termination, \\
+ $p = \sum_{k=0}^{n}A[k]*x^k$. \\
+
+2-4 Inversions\\
+Let A[1:n] be an array of n distinct numbers. If $i < j$ and $A[i] > A[j]$, then the pair (i,j)
+is called an inversion of A. \\
+a. List the five inversions of the array $<2,3,8,6,1>$.\\ 
+
+b. What array with elements form the set ${1,2,...,n}$ has the most inversions? \\
+How many does it have? \\
+
+c. What is the relationship between the running time of insertion sort and the 
+number of inversions in the input array? Justify your answer. \\
+
+d. Give an algorithm that determines the number of inversions in any permutation 
+on n elements in $\theta(nlgn)$ worst-case time. (Hint: Modify merge sort.) \\

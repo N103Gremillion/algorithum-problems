@@ -55,21 +55,58 @@ Show how to use it, along with the while loops of lines 20-23 and 24-27, to prov
 that the MERGE procedure is correct. 
 
 \begin{description}
-\item{Loop Invariant Statment: } The array A[0:k-1] remains sorted
+\item{Loop Invariant Statment: } 
+At the start of each iteration of the loop (lines 12-18):
+    The subarray A[p..k-1] contains the k-p smallest elements of L and R in sorted order.
 
-\item{Initialization: } initial k = p and p is the far left index of the left subarray being merged so 0. Thus A[0:0] is empty and is already sorted.
+\item{Initialization: } Before the first iteration:
+. k=p
+. The subarray A[p..k-1] is empty
+An empty array is trivially sorted and contains the 0 smallest elements of L and R.
+Therefore the invariant holds before the loop begins. 
 
-\item{Maintenance: } assuming that the loop invariant statment is true at the start of the iteration, I must porve it is still true at the start of the next iteration.
-So assuming A[0:n] is already sorted we are on the iteartion for A[0:n+1] we know i $<$ rightbound of left subarray, and j $<$ right bound of the right subarray, or else the 
-loop terminates and we are done so given this we check to se if L[i] $\leq R[j]$ is so then we put L[i] at A[n+1] and the loop invariant holds if not then we go to line 
-16 were we set A[n+1] = R[j] (which would be smaller in this case) and the loop invariant also holds.
+\item{Maintenance: } Assume the invariant holds at the start of an iteration.
+The algorithm compares:
+. L[i]
+. R[j]
 
-\item{Termination: } the loop of lines 12-18 is bound by i $< n_L$ and j $< n_R$ (these are the right bounds of each subarray) and we know by the branching logic either lines 13-15 will run
-or lines 16-17 in both case either the index i or j will be incremented and eventialy one of these (i $< n_L$ and j $< n_R$) will be true and the loop will terminate. 
+This causes 2 cases:
 
-\item{The Clean Up: } after the previous loop terminates we know that either i $< n_L$ or j $< n_R$ and depending on which one either line 20-23 will run (the remaining values of The
-left sorted subarray will be inserted to the right of the already sorted A), and the same will happend with the rigth subarray if j $< n_R$ this is the case. But both wont occur
-since we know the condition for the termination of the loop from 12-18 was that either $< n_L$ or j $< n_R$ had to be false.
+Case 1
+if L[i] $\leq$ R[j]
+. A[k] = L[i]
+. increment i
+Since L[i] is the smallest remaining element, placing it next preserves the sorted order. 
+
+Case 2
+if R[j] < L[i]
+. A[k] = R[j]
+. increment j
+
+Since the smallest ramining element is placed next. 
+
+Then after either case:
+. k is incremented
+. A[p..k-1] still contains the smallest elements in sorted order
+Thus the invariant is perserved.
+
+\item{Termination: } The loop stops when either
+. i = nL (left array exhausted) or
+. j = nR (right array exhausted)
+At this moment:
+A[p..k-1] containse the smallest elements from L and R in sorted order, b one subarray may still conatin remaining elements.
+
+\item{The Clean Up: } Two loops copy the remaining elements:
+
+If left array remains
+Lines 20-23 copy remaining L[i..nL-1] into A.
+If right array remains
+Lines 24-27 copy remaining R[j..nR-1] into A.
+Because:
+. L and R are already sorted
+. All remaining elements are greater than the elements already placed
+Thus appending them preserves the sorted order.
+
 \end{description}
 
 

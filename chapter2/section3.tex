@@ -120,6 +120,29 @@ $T(n)=\begin{cases}
 \end{cases}$ \\
 is T(n) = nlgn. \\
 
+\begin{description}
+\item{Base Case: } 
+n = 2 so T(2)  = 2 and 2lg2 = 2(1) = 2 so this case holds. 
+
+\item{Inductive Hypothesis: }
+Assume that for the n = k case that 
+$T(k)=\begin{cases}
+2 & :k=2, \\
+2T(k/2)+k & :k > 2
+\end{cases}$ \\
+is T(k) = klgk.
+
+\item{Inductive Step: } Now we have to prove for the n = k + 1 case
+$T(k)=\begin{cases}
+2 & :k+1=2, \\
+2T((k+1)/2)+k+1 & :k+1 > 2
+\end{cases}$ \\
+We know k+1 = 2 can't be true since the smallest value of an input is 2 which was the base case that we already proved so then we 
+need to show that 2T((k+1)/2) + k + 1 = (k+1)lg(k+1)
+
+
+\end{description}
+
 \textbf{2.3-5}
 
 You can also think of insertion sort as a recursive algorithm. In order to sort

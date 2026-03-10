@@ -1,22 +1,80 @@
-2.3-1 \\
+\textbf{2.3-1}
 Using Figure 2.4 as a model, illustrate the operation of merge sort on an array 
 initially containing the sequence $<3, 41, 52, 26, 38, 57, 9, 49>$. \\
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{./chapter2/Figure2_4.png}
+    \includegraphics[width=0.6\textwidth]{./chapter2/2_3diagram.png}
 \end{figure} \\
 
-2.3-2 \\
-This test in line 1 of MERGE-SORT procedure reads $"if p \geq r"$ rather than "if $p \neq r$." If MERGE-SORT is called $p > r$, then the subarry
-A[p:r] is empty. Argue that as long as the intial call of MERGE-SORT(A,1,n) has $n \geq 1$, the test "if $p \neq r$" suffices to ensure that no
-recursive call has $p > r$. \\
+\textbf{2.3-2}
 
-2.3-3 \\
+This test in line 1 of the MERGE-SORT procedure reads ``if $p \geq r$'' rather than
+``if $p \neq r$.'' If MERGE-SORT is called with $p > r$, then the subarray
+$A[p:r]$ is empty. Argue that as long as the initial call of
+$\text{MERGE-SORT}(A,1,n)$ has $n \geq 1$, the test ``if $p \neq r$'' suffices
+to ensure that no recursive call has $p > r$.
+
+Given that the initial call of MERGE-SORT has $p = 1$ and $r = n$ where
+$n \geq 1$, we must show that the test $p \neq r$ suffices to ensure that no
+recursive call has $p > r$. From the initial call there are two cases:
+
+\begin{enumerate}
+\item $n = 1$
+
+In this scenario, the function would not return since $1 \neq 1$ is false.
+It would compute
+\[
+q = \frac{1 + 1}{2} = 1
+\]
+
+It then calls two more MERGE-SORT operations:
+
+\[
+\text{MERGE-SORT}(A,1,1)
+\]
+
+(which is the same as the initial call, causing infinite recursion), and
+
+\[
+\text{MERGE-SORT}(A,2,1)
+\]
+
+which has $p > r$. Therefore the claim that no recursive call has $p > r$
+is false, and thus we have shown that $p \neq r$ does not suffice.
+
+\item $n > 1$
+
+There is no need to explore this case since case 1 already disproves the
+argument.
+\end{enumerate}
+
+\textbf{2.3-3}
+
 State a loop invariant for the while loop of lines 12-18 of the MERGE procedure. 
 Show how to use it, along with the while loops of lines 20-23 and 24-27, to prove 
 that the MERGE procedure is correct. 
 
-2.3-4 \\
+\begin{description}
+\item{Loop Invariant Statment: } The array A[0:k-1] remains sorted
+
+\item{Initialization: } initial k = p and p is the far left index of the left subarray being merged so 0. Thus A[0:0] is empty and is already sorted.
+
+\item{Maintenance: } assuming that the loop invariant statment is true at the start of the iteration, I must porve it is still true at the start of the next iteration.
+So assuming A[0:n] is already sorted we are on the iteartion for A[0:n+1] we know i $<$ rightbound of left subarray, and j $<$ right bound of the right subarray, or else the 
+loop terminates and we are done so given this we check to se if L[i] $\leq R[j]$ is so then we put L[i] at A[n+1] and the loop invariant holds if not then we go to line 
+16 were we set A[n+1] = R[j] (which would be smaller in this case) and the loop invariant also holds.
+
+\item{Termination: } the loop of lines 12-18 is bound by i $< n_L$ and j $< n_R$ (these are the right bounds of each subarray) and we know by the branching logic either lines 13-15 will run
+or lines 16-17 in both case either the index i or j will be incremented and eventialy one of these (i $< n_L$ and j $< n_R$) will be true and the loop will terminate. 
+
+\item{The Clean Up: } after the previous loop terminates we know that either i $< n_L$ or j $< n_R$ and depending on which one either line 20-23 will run (the remaining values of The
+left sorted subarray will be inserted to the right of the already sorted A), and the same will happend with the rigth subarray if j $< n_R$ this is the case. But both wont occur
+since we know the condition for the termination of the loop from 12-18 was that either $< n_L$ or j $< n_R$ had to be false.
+\end{description}
+
+
+\textbf{2.3-4}
+
 Use mathmatical induction to show that when $n \geq 2$ is an exact power of 2, the
 solution of the recurrence \\
 $T(n)=\begin{cases}
@@ -25,13 +83,15 @@ $T(n)=\begin{cases}
 \end{cases}$ \\
 is T(n) = nlgn. \\
 
-2.3-5 \\
+\textbf{2.3-5}
+
 You can also think of insertion sort as a recursive algorithm. In order to sort
 A[1:n], recursively sort the subarray A[1:n-1] and then insert A[n] into the sorted subarray
 A[1:n-1]. Write the code for this recurisve version of insertion sort. Give a recurrence for 
 its worst-case run time. \\
 
-2.3-6 \\
+\textbf{2.3-6}
+
 Referring back to the searching problem (see Exercise 2.1-4), observe that if the 
 subarray being searched is already sorted, the searching algorithm can check the 
 midpoint of the subarray against $v$ and eliminate half of the subarray from further
@@ -40,13 +100,15 @@ size of the remaining portion of the subarray each time. Write pseudocode, eithe
 iterative or recursive, for binary search. Argue that the worst-case running time of 
 binary search is  $\theta(lgn)$. \\
 
-2.3-7 \\ 
+\textbf{2.3-7}
+
 The while loop of lines 5-7 of the INSERTION-SORT procedure in Section 2.1
 uses a linear search to scan (backward) throught the sorted subarray A[1:j-1].
 What if insertion sort used a binary search (Exercise 2.3-6) instead of a linear
 search? Whould that imporove the overall worst-case run time to $\theta(nlgn)$? \\
 
-2.3-8 \\
+\textbf{2.3-8}
+
 Write the algorithum that, given a set S of n integers and another integer x, determines whether S contains two elements
 that sum to exactly x. Your algorithum should take $\theta(nlgn)$ time in the worst case. \\
 

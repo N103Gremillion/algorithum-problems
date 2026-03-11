@@ -132,15 +132,44 @@ $T(k)=\begin{cases}
 \end{cases}$ \\
 is T(k) = klgk.
 
-\item{Inductive Step: } Now we have to prove for the n = k + 1 case
-$T(k)=\begin{cases}
-2 & :k+1=2, \\
-2T((k+1)/2)+k+1 & :k+1 > 2
+\item{Inductive Step: } Now we have to prove for the n = 2k case since  when $n \geq 2$ is an exact power of 2 is the restriction
+so logically the next step from n = k that is an exact power of 2 is n = 2k 
+
+$T(n)=\begin{cases}
+2 & :n=2, \\
+2T(n/2)+n & :n > 2
 \end{cases}$ \\
-We know k+1 = 2 can't be true since the smallest value of an input is 2 which was the base case that we already proved so then we 
-need to show that 2T((k+1)/2) + k + 1 = (k+1)lg(k+1)
 
+we know that T(k) = klgk by inductive Hypothesis
 
+if this is the base case we have already prove it so we now need to prove it in the case that 
+
+n $>$ 2 or 2k $>$ 2  so we need to show 
+
+2T($\frac{2k}{2}$) + 2k = (2k)lg(2k) $\rightarrow$ 2(T(k) + k) = 2(klg(2k))
+
+and using the logarithmic product rule 
+$\rightarrow$ 2(T(k) + k) = 2(k(lg(2) + lg(k)))
+
+$\rightarrow$ 2(T(k) + k) = 2(k(1 + lg(k)))
+
+communative property of addition
+$\rightarrow$ 2(T(k) + k) = 2(k(lg(k) + 1))
+
+distributive property of multiplication
+$\rightarrow$ 2(T(k) + k) = 2(klg(k) + k)
+
+using inductive hypothesis
+$\rightarrow$ 2(T(k) + k) = 2(T(k) + k)
+
+thus I have show using induction that 
+when $n \geq 2$ is an exact power of 2, the
+solution of the recurrence \\
+$T(n)=\begin{cases}
+2 & :n=2, \\
+2T(n/2)+n & :n > 2
+\end{cases}$ \\
+is T(n) = nlgn. \\
 \end{description}
 
 \textbf{2.3-5}

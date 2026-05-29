@@ -209,12 +209,49 @@ size of the remaining portion of the subarray each time. Write pseudocode, eithe
 iterative or recursive, for binary search. Argue that the worst-case running time of 
 binary search is  $\theta(lgn)$. \\
 
+\begin{verbatim}
+def search(target, a):
+    n: int = len(a)
+    l: int = 0
+    r: int = n-1
+    
+    print(a)
+    
+    while (l <= r):
+        m: int = (l+r) // 2
+        print(m)
+        val: int = a[m]
+        
+        if val == target:
+            return m
+        elif target > val:
+            l = m+1
+        else:
+            r = m-1
+            
+    return -1
+\end{verbatim}
+
+The reason that the worst case is $\theta(lgn)$ is because of the way binary search works
+so every time you check for the target you split the array you are searching in in half.
+this creates a tree that splits as it goes doewn so say you have an array with 10 elements then
+on the first iterations you check the middle at index 4. you then can either go left our right depending
+on the target either way you end up with a new array of either 4 or 5 (half or a little less thann half)
+you continue this untill you hit a array of 1 element. so it would shrink like $10 -> 5 -> 2 -> 1$ and 
+$\theta(lgn(10)) = $ $3$--$4$  \\
+
 \textbf{2.3-7}
 
 The while loop of lines 5-7 of the INSERTION-SORT procedure in Section 2.1
 uses a linear search to scan (backward) throught the sorted subarray A[1:j-1].
 What if insertion sort used a binary search (Exercise 2.3-6) instead of a linear
 search? Whould that imporove the overall worst-case run time to $\theta(nlgn)$? \\
+
+No, because while binary search reduces the number of comparisons 
+needed to find the correct position from $\theta(n)$ to $\theta(lg n)$, 
+the shifting of elements in the inner loop is still $\theta(n)$ per iteration in 
+the worst case. Since the shifting dominates, the overall worst case runtime 
+remains $\theta(n^2)$\\
 
 \textbf{2.3-8}
 

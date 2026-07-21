@@ -120,21 +120,19 @@ def insertionSort(nums: list[int]) -> list[int]:
 
 (4) (costs $c_4$, times k-1)
 
-(5) (costs $c_5$, times (n-1)* (i+1))
+(5) (costs $c_5$, times ($\sum_{i=1}^{k-1} (i+1$)))
 
-(6) (costs $c_6$ times (n-1)* (i))
+(6-9) (costs $c_6$, $c_7$, $c_8$, $c_9$ |  times ($\sum_{i=1}^{k-1} i$))
 
-(7) (costs $c_7$ times (n-1)* (i))
-
-(8) (costs $c_8$ times (n-1)* (i))
-
-(9) (costs $c_9$ times (n-1)* (i))
-
-(10) (costs $c_{10}$, times n-1)
+(10) (costs $c_{10}$, times k-1)
 
 (11) (costs $c_{11}$, times 1)
 \end{proof}
 
+We know by Gauss sum that: $\sum_{i=1}^{m} i = \frac{m(m+1)}{2}$
+
+So we how have as the summation of all the lines for inserstion sort:\\
+$c_1 + c_2 + kc_3 + (k-1)c_4 + (\frac{(k-1)k}{2}+k-1)$
 
 b. Show how to merge the sublists in $\theta(nlg(n/k))$ worst-case time. \\
 

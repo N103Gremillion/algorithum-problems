@@ -132,8 +132,13 @@ def insertionSort(nums: list[int]) -> list[int]:
 We know by Gauss sum that: $\sum_{i=1}^{m} i = \frac{m(m+1)}{2}$
 
 So we how have as the summation of all the lines for inserstion sort:\\
-$c_1 + c_2 + kc_3 + (k-1)c_4 + (\frac{(k-1)k}{2}+k-1)$
-
+\begin{align*}
+&c_1 + c_2 + kc_3 + (k-1)c_4 + \left(\dfrac{(k-1)k}{2}+k-1\right)c_5 
++ \dfrac{(k-1)k}{2}\left(c_6 + c_7 + c_8 + c_9\right) + (k-1)c_{10} + c_{ll} \\[6pt]
+\implies\ &1\left(c_1 + c_2 + c_{ll}\right) + (k-1)\left(c_4 + c_{10}\right) + kc_3 
++ \dfrac{(k-1)k}{2}\left(c_6 + c_7 + c_8 + c_9\right) + \dfrac{(k-1)k}{2}c_5 + kc_5 - c_5 \\
+\implies &
+\end{align*}
 b. Show how to merge the sublists in $\theta(nlg(n/k))$ worst-case time. \\
 
 c. Given that the modified algorithm runs in $\theta(nk + nlg(n/k))$ worst-case time, 

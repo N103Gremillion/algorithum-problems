@@ -142,9 +142,12 @@ So we how have as the summation of all the lines for inserstion sort:\\
 \implies &c_1 + c_2k + (k^2 - k)(c_3) \\
 \implies &c_1 + (c_2-c_3)k + c_3k^2 \\
 \end{align*}
-so insertion sort costs $O(k^2)$ per sub list and there are n/k sublists so the total cost is $O(k^2 * n/k) = O(nk)$
+so insertion sort costs $O(k^2)$ per sub list and there are n/k sublists so the total cost is $O(k^2 * n/k) = O(nk)$ \\
 
 b. Show how to merge the sublists in $\theta(nlg(n/k))$ worst-case time. \\
+if you were to use merge sort for the n/k sub lists then you could get a runtime of $\theta(nlg(n/k))$ \\
+so you have n/k sorted sublists you then use merge sort so you are callin merge sort on n/k items \\
+and we know the runtime of merge sort in 
 
 c. Given that the modified algorithm runs in $\theta(nk + nlg(n/k))$ worst-case time, 
 what is the largest value of k as a function of n for which the modified algorithm
